@@ -8,6 +8,6 @@ plugins {
 }
 
 allprojects {
-    group = "io.ygdrasil"
+    group = "com.hyeons-lab"
     version = System.getenv("VERSION")?.takeIf { it.isNotBlank() } ?: "0.0.9-SNAPSHOT"
 }

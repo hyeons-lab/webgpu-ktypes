@@ -3,6 +3,7 @@
 package io.ygdrasil.webgpu
 
 import java.nio.ByteBuffer
+import java.nio.ByteOrder
 
 /**
  * Represents a platform-specific abstraction for handling raw binary data buffers.
@@ -262,6 +263,7 @@ actual sealed interface ArrayBuffer {
          */
         actual fun allocate(sizeInBytes: ULong): ArrayBuffer {
             val buffer = ByteBuffer.allocateDirect(sizeInBytes.toInt())
+                .order(ByteOrder.nativeOrder())
             return AndroidArrayBuffer(buffer)
         }
 
@@ -291,6 +293,7 @@ actual sealed interface ArrayBuffer {
          */
         actual fun of(array: ShortArray): ArrayBuffer {
             val buffer = ByteBuffer.allocateDirect(array.size * Short.SIZE_BYTES)
+                .order(ByteOrder.nativeOrder())
             buffer.asShortBuffer().put(array)
             buffer.rewind()
             return AndroidArrayBuffer(buffer)
@@ -303,6 +306,7 @@ actual sealed interface ArrayBuffer {
          */
         actual fun of(array: IntArray): ArrayBuffer {
             val buffer = ByteBuffer.allocateDirect(array.size * Int.SIZE_BYTES)
+                .order(ByteOrder.nativeOrder())
             buffer.asIntBuffer().put(array)
             buffer.rewind()
             return AndroidArrayBuffer(buffer)
@@ -315,6 +319,7 @@ actual sealed interface ArrayBuffer {
          */
         actual fun of(array: FloatArray): ArrayBuffer {
             val buffer = ByteBuffer.allocateDirect(array.size * Float.SIZE_BYTES)
+                .order(ByteOrder.nativeOrder())
             buffer.asFloatBuffer().put(array)
             buffer.rewind()
             return AndroidArrayBuffer(buffer)
@@ -327,6 +332,7 @@ actual sealed interface ArrayBuffer {
          */
         actual fun of(array: DoubleArray): ArrayBuffer {
             val buffer = ByteBuffer.allocateDirect(array.size * Double.SIZE_BYTES)
+                .order(ByteOrder.nativeOrder())
             buffer.asDoubleBuffer().put(array)
             buffer.rewind()
             return AndroidArrayBuffer(buffer)
@@ -351,6 +357,7 @@ actual sealed interface ArrayBuffer {
          */
         actual fun of(array: UShortArray): ArrayBuffer {
             val buffer = ByteBuffer.allocateDirect(array.size * Short.SIZE_BYTES)
+                .order(ByteOrder.nativeOrder())
             buffer.asShortBuffer().put(array.asShortArray())
             buffer.rewind()
             return AndroidArrayBuffer(buffer)
@@ -363,6 +370,7 @@ actual sealed interface ArrayBuffer {
          */
         actual fun of(array: UIntArray): ArrayBuffer {
             val buffer = ByteBuffer.allocateDirect(array.size * Int.SIZE_BYTES)
+                .order(ByteOrder.nativeOrder())
             buffer.asIntBuffer().put(array.asIntArray())
             buffer.rewind()
             return AndroidArrayBuffer(buffer)
